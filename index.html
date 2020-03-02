@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css" integrity="sha256-ct5KWWMn5eSjQCQkdJrskmSppUJDoXwUlBQXCZcISPk=" crossorigin="anonymous" />
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app" class="container mt-20 mx-auto">
+        <h2 class="font-bold text-center text-3xl">{{ year }}</h2>
+        <div class="text-center mt-4 text-white">
+            <a href="#" @click="add" class="mx-2 bg-green-500 hover:bg-green-600 px-4 py-1 rounded-full text-xs">더하기</a>
+            <a href="#" @click="min" class="mx-2 bg-red-500 hover:bg-red-600 px-4 py-1 rounded-full text-xs">빼기</a>
+
+        </div>
+        <div class="mt-10 text-center">
+            <form @submit.prevent="submit">
+                <!-- <input type="text" class="border border-gray-300 rounded p-1 mb-1" :value="inputText" @keyup="updateText" name="inputText"> <br> -->
+                <input type="text" class="border border-gray-300 rounded p-1 mb-1" v-model="inputText"> <br>
+                <button type="submit" class="bg-purple-600 rounded-full py-1 px-2 text-sm text-white">Submit</button>
+            </form>
+            <h3>{{ inputText }}</h3>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                year: 2019,
+                inputText: ''
+            },
+            methods: {
+                add() {
+                    return this.year++;
+                },
+                min() {
+                    return this.year--;
+                },
+                submit(e) {
+                    // inputText = this.inputText;
+                    // console.log(inputText);
+                },
+                // updateText(e) {
+                //     this.inputText = e.target.value;
+                // }
+            }
+        })
+    </script>
 </body>
 </html>
